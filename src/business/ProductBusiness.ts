@@ -45,4 +45,15 @@ export class ProductBusiness {
             throw new Error(error.message);
         }
     }
+
+    public getAllProducts = async () : Promise<Product[]> => {
+        try {
+            const products: Product[] = await this.productsDatabase.selectAllProducts();
+
+            return products;
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
 }

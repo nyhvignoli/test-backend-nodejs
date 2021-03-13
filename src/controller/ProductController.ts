@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { EditCategoryInputDTO, ProductInputDTO } from '../business/entities/Product';
+import { EditCategoryInputDTO, Product, ProductInputDTO } from '../business/entities/Product';
 import { ProductBusiness } from '../business/ProductBusiness';
 import { ProductsDatabase } from '../data/ProductsDatabase';
 import { IdGenerator } from '../services/IdGenerator';
@@ -46,6 +46,18 @@ export class ProductController {
             await productBusiness.editCategory(input);
 
             res.status(201).send(`Product category was updated successfuly`);
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+
+    public getAllProducts = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const result: Product[] = await productBusiness.getAllProducts();
+            res.status(201).send(result);
         } catch (error) {
             res.status(400).send(error.message);
         }

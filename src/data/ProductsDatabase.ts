@@ -3,6 +3,16 @@ import { BaseDatabase } from "./BaseDatabase";
 
 export class ProductsDatabase extends BaseDatabase {
 
+    private static toProductModel = (product: any) : Product => {
+        return product && new Product(
+            product.id,
+            product.title,
+            product.description,
+            product.price,
+            product.category
+        );
+    }
+
     public insertProduct = async (
         product: Product
     ): Promise<void> => {
@@ -17,7 +27,7 @@ export class ProductsDatabase extends BaseDatabase {
                 
             await BaseDatabase.connection(BaseDatabase.CATEGORIES_TABLE)
                 .insert({
-                    name: product.category,
+                    category: product.category,
                     product_id: product.id
                 });
 
@@ -32,10 +42,33 @@ export class ProductsDatabase extends BaseDatabase {
         try {
             await BaseDatabase.connection(BaseDatabase.CATEGORIES_TABLE)
                 .update({
-                    name: data.category,
+                    category: data.category,
                     product_id: data.productId
                 })
                 .where("product_id", data.productId);
+
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    public selectAllProducts = async () : Promise<Product[]> => {
+        try {
+            const result = await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)
+                .join(
+                    BaseDatabase.CATEGORIES_TABLE, 
+                    `${BaseDatabase.PRODUCTS_TABLE}.id`, 
+                    `${BaseDatabase.CATEGORIES_TABLE}.product_id`
+                )
+                .select("*");
+
+            const products: Product[] = [];
+            
+            for (let product of result) {
+                products.push(ProductsDatabase.toProductModel(product));
+            }
+
+            return products;
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);
