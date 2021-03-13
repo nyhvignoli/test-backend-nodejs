@@ -7,6 +7,7 @@ dotenv.config();
 export class BaseDatabase {
 
     protected static PRODUCTS_TABLE = "products";
+    protected static CATEGORIES_TABLE = "categories";
 
     protected static connection: Knex = knex({
         client: "mysql",
