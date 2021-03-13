@@ -10,7 +10,7 @@ Teste técnico para vaga Analista Desenvolvedor(a) Backend Node.js da Anota AI.
 - [Instruções Gerais](#instrucoes)
 - [Scripts Disponíveis](#pt-scripts)
 - [Funcionalidades](#funcionalidades)
-- [Endpoint](#endpoints)
+- [Endpoints](#endpoints)
 - [Bibliotecas e Frameworks](#bibliotecas)
 
 <a id="requisitos"></a>
@@ -53,9 +53,11 @@ DB_NAME = nome do banco de dados
 <a id="endpoints"></a>
 ## ENDPOINTS 
 
+* ### Base URL: `http://localhost:3003`
+
 * ### createProduct
   * Método: POST
-  * Path: `/`
+  * Path: `/product`
   * Body:
     ```json
     {
@@ -79,7 +81,7 @@ DB_NAME = nome do banco de dados
 
 * ### editCategory
   * Método: PUT
-  * Path: `/category/:productId`
+  * Path: `/product/category/:productId`
   * Body:
     ```json
     {
@@ -92,9 +94,10 @@ DB_NAME = nome do banco de dados
     Product category was updated successfuly
     ``` 
 
+
 * ### editProduct
   * Método: PUT
-  * Path: `/:productId`
+  * Path: `/product/:productId`
   * Body:
     ```json
     {
@@ -109,11 +112,11 @@ DB_NAME = nome do banco de dados
     ```
     Product updated successfuly
     ```
-        
+    
   
 * ### getAllProducts
   * Método: GET
-  * Path: `/all`
+  * Path: `/product/all`
   * Body de Resposta:
     ```json
     [
@@ -143,7 +146,7 @@ DB_NAME = nome do banco de dados
 
 * ### getProductsByNameOrCategory
   * Método: GET
-  * Path: `/search`
+  * Path: `/product/search`
   * Query Params: `name` ou `category`
   * Body de Resposta:
     ```json
@@ -168,7 +171,7 @@ DB_NAME = nome do banco de dados
 
 * ### removeProduct
   * Método: DELETE
-  * Path: `/:productId`
+  * Path: `/product/:productId`
   * Body de Resposta: (retornar um erro se encontrar o produto)
     ```
     Product removed successfuly
@@ -195,6 +198,7 @@ Backend Analyst Candidate from Anota AI.
 - [Instructions](#instructions)
 - [Available Scripts](#scripts)
 - [Features](#features)
+- [Endpoints](#endpoints)
 - [Libs and Frameworks](#libs)
 
 <a id="requirements"></a>
