@@ -45,7 +45,7 @@ export class ProductController {
 
             await productBusiness.editCategory(input);
 
-            res.status(201).send(`Product category was updated successfuly`);
+            res.status(200).send(`Product category was updated successfuly`);
         } catch (error) {
             res.status(400).send(error.message);
         }
@@ -57,7 +57,23 @@ export class ProductController {
     ): Promise<void> => {
         try {
             const result: Product[] = await productBusiness.getAllProducts();
-            res.status(201).send(result);
+            res.status(200).send(result);
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+
+    public getProductsByNameOrCategory = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const name = req.query.name as string;
+            const category = req.query.category as string;
+
+            const result: Product[] = await productBusiness
+                .getProductsByNameOrCategory(name, category);
+            res.status(200).send(result);
         } catch (error) {
             res.status(400).send(error.message);
         }

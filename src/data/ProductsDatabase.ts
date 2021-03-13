@@ -74,4 +74,30 @@ export class ProductsDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message);
         }
     }
+
+    public selectProductsByNameOrCategory = async (
+        name: string,
+        category: string
+    ) : Promise<Product[]> => {
+        try {
+            const result = await BaseDatabase.connection.raw(`
+                SELECT * FROM ${BaseDatabase.PRODUCTS_TABLE}
+                JOIN ${BaseDatabase.CATEGORIES_TABLE}
+                ON ${BaseDatabase.PRODUCTS_TABLE}.id = ${BaseDatabase.CATEGORIES_TABLE}.product_id
+                WHERE title LIKE "${name}%"
+                OR category LIKE "${category}%";
+            `);
+
+            const products: Product[] = [];
+            
+            for (let product of result[0]) {
+                products.push(ProductsDatabase.toProductModel(product));
+            }
+
+            return products;
+
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
 }

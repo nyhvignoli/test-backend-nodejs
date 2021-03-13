@@ -56,4 +56,27 @@ export class ProductBusiness {
             throw new Error(error.message);
         }
     }
+
+    public getProductsByNameOrCategory = async (
+        name: string,
+        category: string
+    ): Promise<Product[]> => {
+        try {
+            if (!name && !category) {
+                throw new Error(`At least one of query params must be informed: 'name' or 'category'`);
+            }
+
+            const products: Product[] = await this.productsDatabase
+                .selectProductsByNameOrCategory(name, category);
+
+            if (products && products.length === 0) {
+                throw new Error(`No products has matched the params`);
+            }   
+
+            return products;
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
 }
