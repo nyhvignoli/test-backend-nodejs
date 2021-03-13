@@ -25,9 +25,9 @@ export class ProductController {
                 category: req.body.category
             }
 
-            await productBusiness.createProduct(input);
+            const result = await productBusiness.createProduct(input);
 
-            res.status(201).send(`Product registered successfuly`);
+            res.status(201).send( result );
         } catch (error) {
             res.status(400).send(error.message);
         }

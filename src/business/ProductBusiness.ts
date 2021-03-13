@@ -13,7 +13,7 @@ export class ProductBusiness {
 
     public createProduct = async (
         input: ProductInputDTO
-    ): Promise<void> => {
+    ): Promise<Product> => {
         try {
             this.validator.validateProperties(input);
             this.validator.checkIfIsNumber(input.price);
@@ -27,6 +27,8 @@ export class ProductBusiness {
             );
 
             await this.productsDatabase.insertProduct(product);
+
+            return product;
 
         } catch (error) {
             throw new Error(error.message);

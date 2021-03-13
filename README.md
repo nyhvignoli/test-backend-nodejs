@@ -10,8 +10,8 @@ Teste técnico para vaga Analista Desenvolvedor(a) Backend Node.js da Anota AI.
 - [Instruções Gerais](#instrucoes)
 - [Scripts Disponíveis](#pt-scripts)
 - [Funcionalidades](#funcionalidades)
+- [Endpoint](#endpoints)
 - [Bibliotecas e Frameworks](#bibliotecas)
-- [Documentação](https://documenter.getpostman.com/view/13242412/Tz5p6dMa)
 
 <a id="requisitos"></a>
 ## Requisitos Básicos:
@@ -50,6 +50,130 @@ DB_NAME = nome do banco de dados
 * Atualizar produto
 * Deletar produto
 
+<a id="endpoints"></a>
+## ENDPOINTS 
+
+* ### createProduct
+  * Método: POST
+  * Path: `/`
+  * Body:
+    ```json
+    {
+      "title": "Headset",
+      "description": "Headset gamer",
+      "price": 100,
+      "category": "Tecnologia"
+    }
+    ```
+    
+  * Body de Resposta: (retornar um erro se algum campo estiver faltando)
+    ```json
+    {
+      "id": "3b0eba82-98a2-4eeb-9b3a-9f518e727a0f",
+      "title": "Headset",
+      "description": "Headset gamer",
+      "price": 100,
+      "category": "Tecnologia"
+    }
+    ```
+
+* ### editCategory
+  * Método: PUT
+  * Path: `/category/:productId`
+  * Body:
+    ```json
+    {
+      "category": "Tecnologia Alterada"
+    }
+    ```
+    
+  * Resposta:
+    ```
+    Product category was updated successfuly
+    ``` 
+
+* ### editProduct
+  * Método: PUT
+  * Path: `/:productId`
+  * Body:
+    ```json
+    {
+      "title": "Computador Alterado",
+      "description": "PC top!",
+      "price": 13700,
+      "category": "Tecnologia"
+    }
+    ```
+    
+  * Resposta: (precisa passar ao menos uma propriedade para alterar)
+    ```
+    Product updated successfuly
+    ```
+        
+  
+* ### getAllProducts
+  * Método: GET
+  * Path: `/all`
+  * Body de Resposta:
+    ```json
+    [
+      {
+        "id": "3b0eba82-98a2-4eeb-9b3a-9f518e727a0f",
+        "title": "Headset com preço alterado",
+        "description": "Headset gamer",
+        "price": 200,
+        "category": "Tecnologia Alterada"
+      },
+      {
+        "id": "d13ff91f-ffed-42e9-90cb-603eece0215b",
+        "title": "Computador",
+        "description": "PC top!",
+        "price": 13000,
+        "category": "Tecnologia"
+      },
+      {
+        "id": "e0dd23ba-8f10-402d-9532-2aa1c35168ad",
+        "title": "Maca",
+        "description": "Maca para tatuagem",
+        "price": 300,
+        "category": "Tecnologia"
+      }
+    ]
+    ```  
+
+* ### getProductsByNameOrCategory
+  * Método: GET
+  * Path: `/search`
+  * Query Params: `name` ou `category`
+  * Body de Resposta:
+    ```json
+    [
+      {
+        "id": "3b0eba82-98a2-4eeb-9b3a-9f518e727a0f",
+        "title": "Headset com preço alterado",
+        "description": "Headset gamer",
+        "price": 200,
+        "category": "Tecnologia Alterada"
+      },
+      {
+        "id": "d13ff91f-ffed-42e9-90cb-603eece0215b",
+        "title": "Computador",
+        "description": "PC top!",
+        "price": 13000,
+        "category": "Tecnologia"
+      }
+    ]
+    ```
+
+
+* ### removeProduct
+  * Método: DELETE
+  * Path: `/:productId`
+  * Body de Resposta: (retornar um erro se encontrar o produto)
+    ```
+    Product removed successfuly
+    ```
+
 <a id="bibliotecas"></a>
 ## Bibliotecas e Frameworks:
 * cors
@@ -64,8 +188,7 @@ DB_NAME = nome do banco de dados
 
 <a id="en-readme"></a>
 ### [Português](#pt-readme) | English
-Back-end structure of the Full Stack Project developed at Labenu School bootcamp.
-An API with basic features of an music streaming website.
+Backend Analyst Candidate from Anota AI.
 
 <a name="pt-menu"></a>
 - [Minimum Requirements](#requirements)
@@ -73,7 +196,6 @@ An API with basic features of an music streaming website.
 - [Available Scripts](#scripts)
 - [Features](#features)
 - [Libs and Frameworks](#libs)
-- [Documentation](https://documenter.getpostman.com/view/13242412/Tz5p6dMa)
 
 <a id="requirements"></a>
 ## Minimum Requirements:
