@@ -1,7 +1,7 @@
 import { ProductsDatabase } from "../data/ProductsDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { Validator } from "../services/Validator";
-import { Product, ProductInputDTO } from "./entities/Product";
+import { EditCategoryInputDTO, Product, ProductInputDTO } from "./entities/Product";
 
 export class ProductBusiness {
 
@@ -13,7 +13,7 @@ export class ProductBusiness {
 
     public createProduct = async (
         input: ProductInputDTO
-    ) => {
+    ): Promise<void> => {
         try {
             this.validator.validateProperties(input);
             this.validator.checkIfIsNumber(input.price);
@@ -27,6 +27,19 @@ export class ProductBusiness {
             );
 
             await this.productsDatabase.insertProduct(product);
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
+    public editCategory = async (
+        input: EditCategoryInputDTO
+    ): Promise<void> => {
+        try {
+            this.validator.validateProperties(input);
+
+            await this.productsDatabase.updateCategory(input);
 
         } catch (error) {
             throw new Error(error.message);

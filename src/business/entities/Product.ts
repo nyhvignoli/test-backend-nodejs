@@ -14,3 +14,8 @@ export interface ProductInputDTO {
     price: number,
     category: string
 }
+
+export interface EditCategoryInputDTO {
+    productId: string,
+    category: string
+}
