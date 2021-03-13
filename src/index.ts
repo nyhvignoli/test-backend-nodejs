@@ -1,11 +1,15 @@
 import cors from 'cors';
 import express, { Express } from 'express';
 import { AddressInfo } from 'net';
+import { productRouter } from './controller/routes/productRouter';
 
 // Cors and Express config
 const app: Express = express();
 app.use(express.json());
 app.use(cors());
+
+// Routes config
+app.use("/product", productRouter);
 
 // Server config
 const server = app.listen( process.env.PORT || 3003, () => {
