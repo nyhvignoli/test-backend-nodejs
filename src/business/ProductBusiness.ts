@@ -66,6 +66,25 @@ export class ProductBusiness {
         }
     }
 
+    public removeProduct = async (
+        productId: string
+    ): Promise<void> => {
+        try {
+            this.validator.validateProperties(productId);
+
+            const productFromDB: Product = await this.productsDatabase.selectProductById(productId);
+
+            if (!productFromDB) {
+                throw new Error(`Product not found`);
+            }
+
+            await this.productsDatabase.deleteProduct(productId);
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
     public editCategory = async (
         input: EditCategoryInputDTO
     ): Promise<void> => {

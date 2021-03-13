@@ -78,6 +78,23 @@ export class ProductsDatabase extends BaseDatabase {
         }
     }
 
+    public deleteProduct = async (
+        productId: string
+    ): Promise<void> => {
+        try {
+            await BaseDatabase.connection(BaseDatabase.CATEGORIES_TABLE)
+                .where("product_id", productId)
+                .del(); 
+
+            await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)
+                .where("id", productId)
+                .del();
+                
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
     public selectAllProducts = async () : Promise<Product[]> => {
         try {
             const result = await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)

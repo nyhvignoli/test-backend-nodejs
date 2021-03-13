@@ -54,6 +54,20 @@ export class ProductController {
         }
     }
 
+    public removeProduct = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const productId: string = req.params.productId;
+
+            await productBusiness.removeProduct(productId);
+            res.status(200).send(`Product removed successfuly`);
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+
     public editCategory = async (
         req: Request,
         res: Response

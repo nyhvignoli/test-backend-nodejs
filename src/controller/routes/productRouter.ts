@@ -9,3 +9,4 @@ productRouter.get("/search", productController.getProductsByNameOrCategory);
 productRouter.post("/", productController.createProduct);
 productRouter.put("/:productId", productController.editProduct);
 productRouter.put("/category/:productId", productController.editCategory);
+productRouter.delete("/:productId", productController.removeProduct);
