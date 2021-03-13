@@ -1,40 +1,124 @@
-<h1>Backend Analyst Candidate Testing</h1>
+<a name="languages"></a>
+# Teste Backend Node.js - Anota AI
 
-Hello dear developer, in this test we will analyze your general knowledge and even speed of development. Below we will explain everything that will be needed.
-Do not be alarmed, we do not expect everyone to be able to complete all tasks, this test is the same presented for candidates of all experience levels, so do what you can without worry.
+<a id="pt-readme"></a>
+### Português | [English](#en-readme)
+Teste técnico para vaga Analista Desenvolvedor(a) Backend Node.js da Anota AI.
 
-<strong>The challenge</strong>
+<a name="pt-menu"></a>
+- [Requisitos Básicos](#requisitos)
+- [Instruções Gerais](#instrucoes)
+- [Scripts Disponíveis](#pt-scripts)
+- [Funcionalidades](#funcionalidades)
+- [Bibliotecas e Frameworks](#bibliotecas)
+- [Documentação](https://documenter.getpostman.com/view/13242412/Tz5p6dMa)
 
-Your challenge is to develop an API, using Node.JS, for a product catalog management application. Thus, you must analyze and convert the user stories below into routes of an application.
- 
-<strong>User stories:</strong>
+<a id="requisitos"></a>
+## Requisitos Básicos:
+* Git
+* Node
+* Typescript
+* MySQL
 
-- As a user I would like to register a product so that I can have access to the data of this product in the future (Title, description, price, category)
-- I as a user would like to be able to associate and edit a product category;
-- As a user I would like to be able to access the list of all products;
-- As a user I would like to be able to filter products by name or category;
-- I as a user would like to be able to update the product data;
-- I as a user would like to be able to delete a product from my catalog;
- 
-<strong>Instructions</strong>
-- <strong>To start the test, <strong>fork</strong> this repository, create a branch with its full name and then and send us the link to the test performed (link to your repository) . If you just clone the repository you will not be able to push and then it will be more complicated to make the pull request.</strong>
-- The choice of libraries, databases, architecture, etc. is at your discretion.
-- Change the README file explaining what it takes to run your application.
-- Paste the branch name into the GUPY system and indicate the completion of the test
-- If you want you can leave us feedback regarding the test
+<a id="instrucoes"></a>
+## Instruções Gerais:
+* Clone esse repositório no diretório de sua escolha com o comando `git clone <url>`.
+* Abra o projeto na sua IDE favorita.
+* Rode o comando `npm install` **ou** `npm i` para instalar as dependências do projeto.
+* Crie um arquivo `.env` na pasta raíz do projeto com as informaçoes do seu banco de dados (foi utilizado o MySQL):
+```
+# Database
+DB_HOST = host do banco de dados
+DB_USER = user do banco de dados
+DB_PASSWORD = senha
+DB_NAME = nome do banco de dados
+```
 
- 
-<strong>Our analysis</strong>
-- Knowledge of Javascript, NodeJs, Express will be assessed for this position;
-- We'll look at how you structure the:
-  application layers;
-  outgoing calls,
-  environment variables,
-   cache,
-  unit tests,
-  logs;
-  error handling;
-  documentation.
-- Code organization, module separation, readability and comments.
-- Commit history.
-- The use of MongoDB is a differentiator
+<a id="pt-scripts"></a>
+## Scripts Disponíveis:
+* `npm run tables` para criar as tabelas.
+* `npm run test` para rodar os cases de teste.
+* `npm runs start` para iniciar a aplicação.
+* `npm run dev` para iniciar a aplicação com hot reload.
+
+<a id="funcionalidades"></a>
+## Funcionalidades:
+* Adicionar produto
+* Atribuir ou editar categoria de um produto
+* Listar todos os produtos
+* Filtrar produtos por nome o categoria
+* Atualizar produto
+* Deletar produto
+
+<a id="bibliotecas"></a>
+## Bibliotecas e Frameworks:
+* cors
+* express
+* knex
+* mysql
+* dotenv
+* uuid
+* jest
+
+---
+
+<a id="en-readme"></a>
+### [Português](#pt-readme) | English
+Back-end structure of the Full Stack Project developed at Labenu School bootcamp.
+An API with basic features of an music streaming website.
+
+<a name="pt-menu"></a>
+- [Minimum Requirements](#requirements)
+- [Instructions](#instructions)
+- [Available Scripts](#scripts)
+- [Features](#features)
+- [Libs and Frameworks](#libs)
+- [Documentation](https://documenter.getpostman.com/view/13242412/Tz5p6dMa)
+
+<a id="requirements"></a>
+## Minimum Requirements:
+* Git
+* Node
+* Typescript
+* MySQL
+
+<a id="instructions"></a>
+## Instructions:
+* Clone this repository in a directory of your choice running `git clone <url>` command.
+* Open the project on your favorite IDE.
+* Run the `npm install` command **or** `npm i` to install all the dependencies.
+* On the root directory of the project, create a `.env` file with your environment variables:
+```
+# Database
+DB_HOST = database host
+DB_USER = database user name
+DB_PASSWORD = user password
+DB_NAME = database name
+
+```
+
+<a id="scripts"></a>
+## Available Scripts:
+* `npm run tables` to create tables.
+* `npm run test` to run test cases.
+* `npm run start` to run the application.
+* `npm run dev` to start the application with hot reload.
+
+<a id="features"></a>
+## Features:
+* Register product
+* Associate ou edit a product category
+* Access the list of all products
+* Filter products by name or category
+* Update product data
+* Delete product
+
+<a id="libs"></a>
+## Libs and Frameworks:
+* cors
+* express
+* knex
+* mysql
+* dotenv
+* uuid
+* jest
