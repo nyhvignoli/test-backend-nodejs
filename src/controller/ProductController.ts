@@ -33,6 +33,27 @@ export class ProductController {
         }
     }
 
+    public editProduct = async (
+        req: Request,
+        res: Response
+    ): Promise<void> => {
+        try {
+            const productId: string = req.params.productId;
+            const input: ProductInputDTO = {
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                category: req.body.category
+            }
+
+            await productBusiness.editProduct(productId, input);
+
+            res.status(200).send(`Product updated successfuly`);
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+
     public editCategory = async (
         req: Request,
         res: Response

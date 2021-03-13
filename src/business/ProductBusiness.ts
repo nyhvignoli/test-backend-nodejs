@@ -33,6 +33,39 @@ export class ProductBusiness {
         }
     }
 
+    public editProduct = async (
+        productId: string,
+        input: ProductInputDTO
+    ): Promise<void> => {
+        try {
+
+            if (!input.title && !input.description && !input.price && !input.category) {
+                throw new Error(`Please inform at least on property to update`);
+            }
+
+            input.price && this.validator.checkIfIsNumber(input.price);
+
+            const productFromDB: Product = await this.productsDatabase.selectProductById(productId);
+
+            if (!productFromDB) {
+                throw new Error(`Product not found`);
+            }
+
+            const product: Product = new Product(
+                productFromDB.id,
+                input.title || productFromDB.title,
+                input.description || productFromDB.description,
+                input.price || productFromDB.price,
+                input.category || productFromDB.category
+            );
+
+            await this.productsDatabase.updateProduct(productId, product);
+
+        } catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
     public editCategory = async (
         input: EditCategoryInputDTO
     ): Promise<void> => {

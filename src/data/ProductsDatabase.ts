@@ -52,6 +52,32 @@ export class ProductsDatabase extends BaseDatabase {
         }
     }
 
+    public updateProduct = async (
+        productId: string,
+        product: Product
+    ): Promise<void> => {
+        try {
+            await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)
+                .where("id", productId)
+                .update({
+                    id: product.id,
+                    title: product.title,
+                    description: product.description,
+                    price: product.price
+                })
+                
+            product.category && await BaseDatabase.connection(BaseDatabase.CATEGORIES_TABLE)
+                .where("product_id", productId)
+                .update({
+                    category: product.category,
+                    product_id: product.id
+                });                
+
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
     public selectAllProducts = async () : Promise<Product[]> => {
         try {
             const result = await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)
@@ -69,6 +95,26 @@ export class ProductsDatabase extends BaseDatabase {
             }
 
             return products;
+
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        }
+    }
+
+    public selectProductById = async (
+        productId: string
+    ) : Promise<Product> => {
+        try {
+            const result = await BaseDatabase.connection(BaseDatabase.PRODUCTS_TABLE)
+                .join(
+                    BaseDatabase.CATEGORIES_TABLE, 
+                    `${BaseDatabase.PRODUCTS_TABLE}.id`, 
+                    `${BaseDatabase.CATEGORIES_TABLE}.product_id`
+                )
+                .select("*")
+                .where( "id", productId);
+
+            return ProductsDatabase.toProductModel(result[0]);    
 
         } catch (error) {
             throw new Error(error.sqlMessage || error.message);
